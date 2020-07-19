@@ -1,4 +1,4 @@
-function formatDuration(duration = 0, display = false) {
+export default function formatDuration(duration = 0, display = false) {
   var hrs = parseInt(duration / 3600, 10);
   duration -= hrs * 3600;
   var mins = parseInt(duration / 60, 10);
@@ -26,4 +26,4 @@ const requestOptions = {
 const baseUrl =
   "https://testapp-gw.fcmb.com/quiz-service/api/v1/quiz/mgr/quiz-manager";
 
-export { baseUrl, requestOptions, formatDuration };
+export { baseUrl, requestOptions };

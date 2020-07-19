@@ -26,4 +26,4 @@ const requestOptions = {
 const baseUrl =
   "https://testapp-gw.fcmb.com/quiz-service/api/v1/quiz/mgr/quiz-manager";
 
-export { baseUrl, requestOptions };
+export { baseUrl, requestOptions, formatDuration };

@@ -4,7 +4,7 @@ import QuestionItem from "./QuestionItem";
 import LoginPage from "./LoginPage";
 import StartPage from "./StartPage";
 import FinishPage from "./FinishPage";
-import { formatDuration, baseUrl, requestOptions } from "./utils";
+import { baseUrl, requestOptions, formatDuration } from "./utils";
 
 export default function Quiz({ code = "", goHome, onCodeChange }) {
   const [password, setPassword] = React.useState("");

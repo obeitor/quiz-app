@@ -27,7 +27,7 @@ export default function QuizListPage({ goToQuiz }) {
               var q = quizData.data.response[i];
               qzs.push(
                 <QuizInfo
-                  goToQuiz={goToQuiz}
+                  goToQuiz={e => goToQuiz(e)}
                   key={q.id}
                   title={q.title}
                   description={q.description}
@@ -52,7 +52,7 @@ export default function QuizListPage({ goToQuiz }) {
         console.log(e.message);
         setStatus("E");
       });
-  }, []);
+  }, [goToQuiz]);
 
   if (status === "P") {
     return <LoadPage />;

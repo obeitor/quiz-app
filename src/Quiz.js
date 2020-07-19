@@ -52,20 +52,20 @@ export default function Quiz({ code = "", goHome, onCodeChange }) {
     } else if (quizState === "STARTED") {
       setTimerMgr(setInterval(countDownTimer, 1000));
     }
-  }, [quizState]);
+  }, [quizState, code, password]);
 
   React.useEffect(() => {
     if (timer === 0 && timerMgr) {
       clearInterval(timerMgr);
       setQuizState("FINISHED");
     }
-  }, [timer]);
+  }, [timer, timerMgr]);
 
   React.useEffect(() => {
     if (quiz) {
       setLastQuestion(question === quiz.quizQuestions.length - 1);
     }
-  }, [question]);
+  }, [question, quiz]);
 
   function onChangeQuestion(forward) {
     if (forward && !lastQuestion) {

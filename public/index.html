@@ -17,14 +17,26 @@
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     />
   </head>
-  <body style="background-color: beige;">
+  <body>
+    <style>
+      body{
+          background-image: url("bg-img.jpg");
+          background-size: contain;
+          background-color: #f7d26f;
+      }
+  </style>
     <div
       style="background-color: white;"
       class="container-sm border p-0 min-vh-100"
     >
-      <nav class="navbar bg-dark">
-        <a href="#" class="navbar-brand" style="color: beige;">Quiz App</a>
+    <header>
+      <nav class="navbar bg-dark navbar-expand-lg">
+          <div class="container-fluid">
+              <a class="navbar-brand text-white"><em class="fa fa-graduation-cap fa-lg mr-2"></em>Quiz App</a>
+              <span class="float-right p-1"><img src="logo.png" height="50" width="65" alt="icon-shell"/></span>
+          </div>
       </nav>
+    </header>
       <div class="container-fluid p-4 vh-100" id="root"></div>
     </div>
   </body>

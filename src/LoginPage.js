@@ -15,7 +15,7 @@ export default function LoginPage({
       <div className="col-sm-6 m-auto p-0 card shadow rounded">
         <form onSubmit={onClickLogin}>
           <div className="card-header border text-center text-light bg-success">
-            <h5>Begin Test</h5>
+            <h5>Begin Quiz</h5>
           </div>
           <div className="card-body m-3">
             <div className="form-group text-muted">

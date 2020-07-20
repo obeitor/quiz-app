@@ -1,5 +1,4 @@
 import React from "react";
-import "./styles.css";
 import QuizListPage from "./QuizListPage";
 import Quiz from "./Quiz";
 

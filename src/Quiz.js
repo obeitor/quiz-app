@@ -198,7 +198,7 @@ export default function Quiz({ code = "", goHome, onCodeChange }) {
                   lastQuestion ? "success" : "info"
                 } btn-block`}
               >
-                {lastQuestion ? "SUBMIT" : "NEXT"}
+                {lastQuestion ? "FINISH" : "NEXT"}
               </button>
             </div>
           </div>

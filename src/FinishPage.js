@@ -1,4 +1,5 @@
 import React from "react";
+import { formatDuration } from "./utils";
 
 export default function FinishPage({
   goHome,

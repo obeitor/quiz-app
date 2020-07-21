@@ -18,6 +18,7 @@ export default function Quiz({ code = "", goHome, onCodeChange }) {
   const [lastQuestion, setLastQuestion] = React.useState(false);
   const [userName, setUserName] = React.useState("");
   const [company, setCompany] = React.useState("");
+  const [submitStatus, setSubmitStatus] = React.useState('NOT-SUBMITTED');
 
   React.useEffect(() => {
     if (quizState === "LOADING") {
@@ -52,7 +53,11 @@ export default function Quiz({ code = "", goHome, onCodeChange }) {
     } else if (quizState === "STARTED") {
       setTimerMgr(setInterval(countDownTimer, 1000));
     }
-  }, [quizState, code, password]);
+    else if(quizState === 'FINISHED' && submitStatus === 'READY'){
+      console.log('call api to submit here')
+      setTimeout(()=>{setSubmitStatus('DONE')},3000)
+    }
+  }, [quizState, code, password, submitStatus]);
 
   React.useEffect(() => {
     if (timer === 0 && timerMgr) {
@@ -216,10 +221,14 @@ export default function Quiz({ code = "", goHome, onCodeChange }) {
     return (
       <FinishPage
         goHome={goHome}
+        timer={timer}
+        endTimer={() => {setTimer(0)}}
+        answered={Object.keys(quizSolutions).length}
         total={quiz.quizQuestions.length}
         goBackToQuiz={() => {
           setQuizState("CONTINUE");
         }}
+        submitStatus={submitStatus}
       />
     );
   }

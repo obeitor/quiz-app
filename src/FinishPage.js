@@ -5,6 +5,7 @@ export default function FinishPage({
   goBackToQuiz,
   total = 0,
   answered = 0,
+  timer = 0,
   endTimer,
   submitStatus
 }) {

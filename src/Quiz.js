@@ -63,6 +63,7 @@ export default function Quiz({ code = "", goHome, onCodeChange }) {
     if (timer === 0 && timerMgr) {
       clearInterval(timerMgr);
       setQuizState("FINISHED");
+      setSubmitStatus('READY')
     }
   }, [timer, timerMgr]);
 

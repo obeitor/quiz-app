@@ -70,7 +70,7 @@ export default function QuizInfo({
           <p>{description}</p>
           <div>
             <PrintExpDate />
-            <span className="text-light badge badge-pill badge-secondary float-left">
+            <span className="text-mute badge badge-pill badge-light float-left">
               {" "}
               <strong>{code}</strong>
             </span>

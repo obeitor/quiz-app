@@ -6,3 +6,7 @@ body{
 .over-body{
   background-color: #ffffff;
 }
+.loading-page{
+  background-image: url("loading.gif");
+  background-size: contain;
+}

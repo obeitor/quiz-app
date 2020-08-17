@@ -30,9 +30,9 @@ export default function QuestionItem({
     <>
       <div className="border-bottom px-2 py-3 mb-3 text-center font-weight-bold text-muted">
         <span className="p-2">{position}.</span>
+        {question}<br/>
         {questionType === "MULTIOPTION" ?
-        (<span className="p-2 badge badge-pill badge-success text-light">MULTIPLE CHOICE</span>):(<></>)}
-        {question}
+        (<span className="p-2 badge badge-pill badge-success text-light">MULTIPLE CHOICES POSSIBLE</span>):(<></>)}
       </div>
       <div className="text-muted">
         {questionType === "TEXT" ? (

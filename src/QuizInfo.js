@@ -85,7 +85,7 @@ export default function QuizInfo({
           </div>
           <StartButton />
           {passProtected ? 
-          (<span className="badge badge-pill badge-light text-mute">PROTECTED</span>)
+          (<div className="text-center"><span className="badge badge-pill badge-dark text-mute">PROTECTED</span></div>)
           :(<></>)}
         </div>
       </div>

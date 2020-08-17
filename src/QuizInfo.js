@@ -10,7 +10,8 @@ export default function QuizInfo({
   id,
   duration,
   status = "INACTIVE",
-  goToQuiz
+  goToQuiz,
+  passProtected
 }) {
   function PrintDate({ date }) {
     const optional = { year: "numeric", month: "short", day: "numeric" };
@@ -83,6 +84,9 @@ export default function QuizInfo({
             </strong>
           </div>
           <StartButton />
+          {passProtected ? 
+          (<span className="badge badge-pill badge-light text-mute">PROTECTED</span>)
+          :(<></>)}
         </div>
       </div>
     </div>

@@ -32,6 +32,7 @@ export default function QuizListPage({ goToQuiz }) {
                   title={q.title}
                   description={q.description}
                   code={q.quizCode}
+                  passProtected={q.protectedQuiz}
                   id={q.id}
                   start={q.startDate}
                   end={q.endDate}

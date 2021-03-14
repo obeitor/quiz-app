@@ -99,7 +99,7 @@ export default function Quiz({ code = "", goHome, onCodeChange }) {
         }
       )
     }
-  }, [quizState, code, password, submitStatus,setupSolnForSubmission]);
+  }, [quizState, code, password, submitStatus,setupSolnForSubmission, startTime]);
 
   React.useEffect(() => {
     if (timer === 0 && timerMgr) {

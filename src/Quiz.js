@@ -22,8 +22,10 @@ export default function Quiz({ code = "", goHome, onCodeChange }) {
   const [startTime, setStartTime] = React.useState(0);
 
   const setupSolnForSubmission =  React.useCallback(() => {
+    if(quizState === 'FINISHED' && submitStatus === 'READY'){
     var submission = {};
     submission.submissionInfo = {};
+    submission.submissionInfo.quizId = quiz.id;
     submission.submissionInfo.fullName = userName;
     submission.submissionInfo.launchedAt = startTime;
     submission.submissionInfo.company = company;
@@ -45,7 +47,8 @@ export default function Quiz({ code = "", goHome, onCodeChange }) {
       }
     }
     return submission;
-  },[quiz,userName,startTime,quizSolutions, company]);
+  }
+  },[quiz,userName,startTime,quizSolutions, company, quizState]);
 
   React.useEffect(() => {
     if (quizState === "LOADING") {

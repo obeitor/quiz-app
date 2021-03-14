@@ -45,7 +45,7 @@ export default function Quiz({ code = "", goHome, onCodeChange }) {
       }
     }
     return submission;
-  },[quiz,userName,startTime,quizSolutions]);
+  },[quiz,userName,startTime,quizSolutions, company]);
 
   React.useEffect(() => {
     if (quizState === "LOADING") {

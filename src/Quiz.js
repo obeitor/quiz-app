@@ -80,13 +80,14 @@ export default function Quiz({ code = "", goHome, onCodeChange }) {
             setLoginError("We were unable to get quiz");
           }
         );
-    } else if (quizState === "STARTED") {
+    } else if (quizState === "STARTED" && startTime===0) {
       setStartTime(new Date().getTime());
       setTimerMgr(setInterval(countDownTimer, 1000));
     }
     else if(quizState === 'FINISHED' && submitStatus === 'READY'){
       //console.log('call api to submit here');
       var s = setupSolnForSubmission();
+      console.log(s);
       axios.post(
         baseUrl + "/submit", s, requestOptions
       ).then(

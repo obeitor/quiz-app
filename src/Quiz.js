@@ -26,6 +26,7 @@ export default function Quiz({ code = "", goHome, onCodeChange }) {
     submission.submissionInfo = {};
     submission.submissionInfo.fullName = userName;
     submission.submissionInfo.launchedAt = startTime;
+    submission.submissionInfo.company = company;
     submission.submissions = [];
     for(var i=0;i<quiz.quizQuestions.length;i++){
       var s = {};
@@ -83,8 +84,16 @@ export default function Quiz({ code = "", goHome, onCodeChange }) {
     else if(quizState === 'FINISHED' && submitStatus === 'READY'){
       //console.log('call api to submit here');
       var s = setupSolnForSubmission();
-      console.log(s);
-      setTimeout(()=>{setSubmitStatus('DONE')},3000)
+      axios.post(
+        baseUrl + "/submit", s, requestOptions
+      ).then(
+        rsp => {
+            setSubmitStatus('DONE');
+        }, e => {
+          console.log('error submitting');
+          setSubmitStatus('DONE');
+        }
+      )
     }
   }, [quizState, code, password, submitStatus,setupSolnForSubmission]);
 

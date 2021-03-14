@@ -54,8 +54,8 @@ export default function Quiz({ code = "", goHome, onCodeChange }) {
       setTimerMgr(setInterval(countDownTimer, 1000));
     }
     else if(quizState === 'FINISHED' && submitStatus === 'READY'){
-      console.log('call api to submit here')
-      //console.log(quizSolutions)
+      //console.log('call api to submit here');
+      console.log(quizSolutions);
       setTimeout(()=>{setSubmitStatus('DONE')},3000)
     }
   }, [quizState, code, password, submitStatus]);

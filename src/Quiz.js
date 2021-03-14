@@ -61,7 +61,7 @@ export default function Quiz({ code = "", goHome, onCodeChange }) {
       console.log(s);
       setTimeout(()=>{setSubmitStatus('DONE')},3000)
     }
-  }, [quizState, code, password, submitStatus, setupSolnForSubmission]);
+  }, [quizState, code, password, submitStatus]);
 
   React.useEffect(() => {
     if (timer === 0 && timerMgr) {
@@ -89,7 +89,7 @@ export default function Quiz({ code = "", goHome, onCodeChange }) {
     }
   }
 
-  function setupSolnForSubmission(){
+  const setupSolnForSubmission =  React.useCallback(() => {
     var submission = {};
     submission.submissionInfo.fullName = userName;
     submission.submissionInfo.launchedAt = startTime;
@@ -111,7 +111,7 @@ export default function Quiz({ code = "", goHome, onCodeChange }) {
       }
     }
     return submission;
-  }
+  },[quiz,userName,startTime,quizSolutions]);
 
   function onClickLogin(evt) {
     evt.preventDefault();

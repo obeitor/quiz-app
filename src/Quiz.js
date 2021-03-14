@@ -58,7 +58,7 @@ export default function Quiz({ code = "", goHome, onCodeChange }) {
       console.log(quizSolutions);
       setTimeout(()=>{setSubmitStatus('DONE')},3000)
     }
-  }, [quizState, code, password, submitStatus]);
+  }, [quizState, code, password, submitStatus, quizSolutions]);
 
   React.useEffect(() => {
     if (timer === 0 && timerMgr) {

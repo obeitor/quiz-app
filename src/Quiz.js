@@ -23,6 +23,7 @@ export default function Quiz({ code = "", goHome, onCodeChange }) {
 
   const setupSolnForSubmission =  React.useCallback(() => {
     var submission = {};
+    submission.submissionInfo = {};
     submission.submissionInfo.fullName = userName;
     submission.submissionInfo.launchedAt = startTime;
     submission.submissions = [];

@@ -19,6 +19,7 @@ export default function Quiz({ code = "", goHome, onCodeChange }) {
   const [userName, setUserName] = React.useState("");
   const [company, setCompany] = React.useState("");
   const [submitStatus, setSubmitStatus] = React.useState('NOT-SUBMITTED');
+  const [startTime, setStartTime] = React.useState(0);
 
   React.useEffect(() => {
     if (quizState === "LOADING") {
@@ -51,11 +52,13 @@ export default function Quiz({ code = "", goHome, onCodeChange }) {
           }
         );
     } else if (quizState === "STARTED") {
+      setStartTime(new Date().getTime());
       setTimerMgr(setInterval(countDownTimer, 1000));
     }
     else if(quizState === 'FINISHED' && submitStatus === 'READY'){
       //console.log('call api to submit here');
-      console.log(quizSolutions);
+      var s = setupSolnForSubmission();
+      console.log(s);
       setTimeout(()=>{setSubmitStatus('DONE')},3000)
     }
   }, [quizState, code, password, submitStatus, quizSolutions]);
@@ -84,6 +87,30 @@ export default function Quiz({ code = "", goHome, onCodeChange }) {
     if (forward && lastQuestion) {
       setQuizState("FINISHED");
     }
+  }
+
+  function setupSolnForSubmission(){
+    var submission = {};
+    submission.submissionInfo.fullName = userName;
+    submission.submissionInfo.launchedAt = startTime;
+    submission.submissions = [];
+    for(var i=0;i<quiz.quizQuestions.length;i++){
+      var s = {};
+      s.questionId = quiz.quizQuestions[i].id;
+      if(quiz.quizQuestions[i].questionType === "TEXT" && quizSolutions[s.questionId]){
+        s.answerText = quizSolutions[s.questionId];
+        submission.submissions.push(s);
+      }
+      else if(quiz.quizQuestions[i].questionType === "OPTIONS" && quizSolutions[s.questionId].length>0){
+        s.answerId = quizSolutions[s.questionId][0];
+        submission.submissions.push(s);
+      }
+      else if(quiz.quizQuestions[i].questionType === "MULTIOPTION" && quizSolutions[s.questionId].length>0){
+        s.answersId = quizSolutions[s.questionId];
+        submission.submissions.push(s);
+      }
+    }
+    return submission;
   }
 
   function onClickLogin(evt) {

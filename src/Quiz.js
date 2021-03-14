@@ -21,6 +21,30 @@ export default function Quiz({ code = "", goHome, onCodeChange }) {
   const [submitStatus, setSubmitStatus] = React.useState('NOT-SUBMITTED');
   const [startTime, setStartTime] = React.useState(0);
 
+  const setupSolnForSubmission =  React.useCallback(() => {
+    var submission = {};
+    submission.submissionInfo.fullName = userName;
+    submission.submissionInfo.launchedAt = startTime;
+    submission.submissions = [];
+    for(var i=0;i<quiz.quizQuestions.length;i++){
+      var s = {};
+      s.questionId = quiz.quizQuestions[i].id;
+      if(quiz.quizQuestions[i].questionType === "TEXT" && quizSolutions[s.questionId]){
+        s.answerText = quizSolutions[s.questionId];
+        submission.submissions.push(s);
+      }
+      else if(quiz.quizQuestions[i].questionType === "OPTIONS" && quizSolutions[s.questionId].length>0){
+        s.answerId = quizSolutions[s.questionId][0];
+        submission.submissions.push(s);
+      }
+      else if(quiz.quizQuestions[i].questionType === "MULTIOPTION" && quizSolutions[s.questionId].length>0){
+        s.answersId = quizSolutions[s.questionId];
+        submission.submissions.push(s);
+      }
+    }
+    return submission;
+  },[quiz,userName,startTime,quizSolutions]);
+
   React.useEffect(() => {
     if (quizState === "LOADING") {
       axios
@@ -89,29 +113,7 @@ export default function Quiz({ code = "", goHome, onCodeChange }) {
     }
   }
 
-  const setupSolnForSubmission =  React.useCallback(() => {
-    var submission = {};
-    submission.submissionInfo.fullName = userName;
-    submission.submissionInfo.launchedAt = startTime;
-    submission.submissions = [];
-    for(var i=0;i<quiz.quizQuestions.length;i++){
-      var s = {};
-      s.questionId = quiz.quizQuestions[i].id;
-      if(quiz.quizQuestions[i].questionType === "TEXT" && quizSolutions[s.questionId]){
-        s.answerText = quizSolutions[s.questionId];
-        submission.submissions.push(s);
-      }
-      else if(quiz.quizQuestions[i].questionType === "OPTIONS" && quizSolutions[s.questionId].length>0){
-        s.answerId = quizSolutions[s.questionId][0];
-        submission.submissions.push(s);
-      }
-      else if(quiz.quizQuestions[i].questionType === "MULTIOPTION" && quizSolutions[s.questionId].length>0){
-        s.answersId = quizSolutions[s.questionId];
-        submission.submissions.push(s);
-      }
-    }
-    return submission;
-  },[quiz,userName,startTime,quizSolutions]);
+  
 
   function onClickLogin(evt) {
     evt.preventDefault();

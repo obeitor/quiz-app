@@ -229,7 +229,7 @@ export default function Quiz({ code = "", goHome, onCodeChange }) {
           <div className="col-sm-8 h-100 border">
             <QuestionItem
               question={quiz.quizQuestions[question].questionText}
-              position={quiz.quizQuestions[question].position}
+              position={quiz.quizQuestions[question].identifier}
               questionType={quiz.quizQuestions[question].questionType}
               choices={quiz.quizQuestions[question].questionChoices}
               selectChoices={currentSol}

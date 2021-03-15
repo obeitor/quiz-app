@@ -4,7 +4,7 @@ import OptionItem from "./OptionItem";
 
 export default function QuestionItem({
   question = "Select One",
-  position = 1,
+  position = "1",
   questionType = "OPTION",
   choices,
   selectChoices = [],
